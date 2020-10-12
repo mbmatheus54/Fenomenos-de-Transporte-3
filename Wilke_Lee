@@ -1,0 +1,62 @@
+# Correlação de Wilke e Lee, para difusão binária de massa, segundo Lei de Fick
+direitos_autorais = 'Copyright (c) 2020 Matheus Monteiro Batsta. Graduação em Engenharia Bioquímica\n' \
+                    'All Rights Reserved'
+
+import math
+import time
+import cv2
+
+yk = input('pressione enter para continuar')
+print(direitos_autorais)
+time.sleep(2)
+tempo_acesso = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+time.sleep(2)
+print('Hora de acesso: {}'.format(tempo_acesso))
+time.sleep(2)
+print('bem vindo a explicação do coeficiente de correlação de Wilke e Lee'.upper())
+time.sleep(2)
+print(
+    '\u001B[31mRecomendações de uso, mantenha a imagem aberta enquanto observa o desenvolvimento do código!{0}'.format(
+        '\033[m'.upper()))
+print(
+    '\u001B[31mOs termos sobescritos serão representados como letras minusculas e os termos elevados pelo caractere (^)'.format(
+        '\033[m'.upper()))
+print('\033[m' + 'A equação de Wilke e Lee, tem por sua finalidade de correlacionar e estimar um coeficiente de gases.' \
+                 'Ao considerarmos pelo menos uma das espécies com uma massa molar superior a 45'.upper() + 'g/gmol.'.lower() + \
+      'Observando segundo a imagem, temos as seguintes caracteristicas: '.upper())
+time.sleep(2)
+print('=' * 55)
+print('\033[31m' + '[Dab]' + ' = ' + 'Coeficiente de difusividade do elemento A em B\n'
+                                     '\u001B[33m[b*10^3]' + ' = ' + 'Fator acentrico, segundo Wilke e Lee\n'
+                                                                    '\u001B[32m' + '[T^1,75] ou [T^3/2]' + " = " + 'Temperatura (K)\n'
+                                                                                                                   '\u001B[7;30m' + '[P]' + ' = ' + 'Pressão (atm)\033[m\n'
+                                                                                                                                                    '\u001B[35m' + '[σab]' + ' = ' + 'Diâmetro médio de colisão entre A e B (Å)')
+print('\u001B[36m' + '[Ωab]' + ' = ' + 'Integral de colisão (Adimensional)\033[m\n'
+                                       '\u001B[37m' + '[Mi]' + ' = ' + 'Concentração molar das espécies (g/mol)\033[m')
+print('=' * 55)
+print('como demonstração prática da Correlação de Wilke e Lee, observe o exemplo a seguir:')
+print(
+    '1) Determine o coeficiente de difusividade para os elementos nitrogênio e hidrogênio, utilizando a correlação de Wilke e Lee, para uma condição crítica:')
+print('=-' * 38)
+print(' T(K)      σi(Å)       Ωd      P(atm)     Ma(g/mol)     Mb(g/mol)\n'
+      '288.15    3.572      0.8188        1         2.016        28.013   ')
+print('=-' * 38)
+b = (1.858 / 1000)
+t = (288.15 ** 1.75)
+p = 1
+coli = 3.572
+inte = 0.8188
+ma = 2.016
+mb = 28.013
+Dab = b * (t / (p * (coli ** 2) * inte)) * (math.sqrt((1 / ma) + (1 / mb)))
+print('o coeficiente de difusividade, segundo a correlação de Wilke e Lee é {:.3f}(cm²/s)'.format(Dab))
+
+imagem = cv2.imread('wilke lee.png')
+cv2.namedWindow("Correlação de Wilke e Lee", cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Correlação de Wilke e Lee', 500, 300)
+cv2.imshow('Correlação de Wilke e Lee', imagem)
+cv2.waitKey(0)
+cv2.imwrite('wilke lee.PNG', imagem)
+cv2.destroyAllWindows()
+yh = input('pressione enter para encerrar')
+
